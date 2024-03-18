@@ -1,0 +1,23 @@
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && \
+    apt-get install -y \
+      python3 \
+      python3-protobuf \
+      protobuf-compiler \
+      libssl-dev \
+      build-essential \
+      wget \
+      libseccomp-dev \
+      git
+
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2-linux-aarch64.tar.gz -O cmake-linux-aarch64.tar.gz && \
+    tar xf cmake-linux-aarch64.tar.gz --strip-components=1 --keep-directory-symlink -C /usr/
+
+RUN mkdir -p /work
+WORKDIR /work
+RUN git config --global --add safe.directory /work
+
+RUN echo $PWD

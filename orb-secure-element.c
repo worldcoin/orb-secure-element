@@ -46,6 +46,13 @@
 #include <linux/seccomp.h> /* Definition of SECCOMP_* constants */
 #include <sys/prctl.h>
 
+#ifndef FAT_FILENAME
+#define FAT_FILENAME "sss_fat.bin"
+#endif
+
+int __attribute__((weak)) delete_old_pairing_keys()
+{};
+
 // Hard-coded path to plug-and-trust keystorage
 //
 #define KEYSTORE_PATH "/usr/persistent/se/keystore"
